@@ -3,22 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOS Shelf - Resepsiyon Sistemi</title>
+    <title>BOS Shelf - Resepsiyon Axtarış Sistemi</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; background-color: #f4f4f9; }
-        .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); display: inline-block; }
-        h1 { color: #333; }
-        p { color: #666; }
-        .btn { display: inline-block; padding: 10px 20px; margin: 10px; color: white; background-color: #007bff; border: none; border-radius: 5px; text-decoration: none; cursor: pointer; }
-        .btn-admin { background-color: #28a745; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f6f9; color: #333; text-align: center; }
+        .container { max-width: 500px; margin: 30px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0px 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: #1e293b; font-size: 24px; margin-bottom: 5px; }
+        p { color: #64748b; font-size: 14px; margin-bottom: 25px; }
+        .search-box { width: 100%; padding: 12px 20px; box-sizing: border-box; border: 2px solid #cbd5e1; border-radius: 8px; font-size: 16px; transition: 0.3s; margin-bottom: 20px; outline: none; }
+        .search-box:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); }
+        .results-list { list-style: none; padding: 0; margin: 0; text-align: left; }
+        .result-item { padding: 12px 15px; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
+        .result-item:last-child { border-bottom: none; }
+        .user-info { display: flex; flex-direction: column; }
+        .user-name { font-weight: 600; color: #0f172a; }
+        .user-role { font-size: 13px; color: #64748b; margin-top: 2px; }
+        .status-badge { padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; background-color: #dcfce7; color: #166534; }
+        .no-result { color: #94a3b8; padding: 20px; font-style: italic; }
     </style>
 </head>
 <body>
+
     <div class="container">
         <h1>BOS Shelf Qəbul Sistemi</h1>
-        <p>Sistem uğurla quraşdırıldı!</p>
-        <button class="btn" onclick="alert('Qonaq qeydiyyatı tezliklə aktiv olacaq!')">Qonaq Girişi</button>
-        <button class="btn btn-admin" onclick="alert('Admin Panelə keçid tezliklə aktiv olacaq!')">Admin Panel</button>
+        <p>Axtardığınız əməkdaşın adını və ya şöbəsini yazın</p>
+        
+        <!-- Axtarış Girişi -->
+        <input type="text" id="searchInput" class="search-box" placeholder="Məsələn: Heydər Əskərov HSE..." oninput="filterEmployees()">
+        
+        <!-- Nəticə Siyahısı -->
+        <ul id="resultsList" class="results-list">
+            <!-- Məlumatlar JS tərəfindən bura doldurulacaq -->
+        </ul>
     </div>
+
+    <script>
+        // Nümunəvi İşçi Bazası
+        const employees = [
+            { name: "Heydər Əskərov", role: "HSE Specialist", status: "Ofisdə" },
+            { name: "Anar Məmmədov", role: "HR Manager", status: "Ofisdə" },
+            { name: "Elvin Həsənov", role: "GRC Specialist", status: "Ezamiyyətdə" },
+            { name: "Leyla Əliyeva", role: "Receptionist", status: "Ofisdə" }
+        ];
+
+        function filterEmployees() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const listElement = document.getElementById('resultsList');
+            listElement.innerHTML = '';
+
+            if (query === '') {
+                listElement.innerHTML = '<li class="no-result">Axtarış etmək üçün yazın...</li>';
+                return;
+            }
+
+            const filtered = employees.filter(emp => 
+                emp.name.toLowerCase().includes(query) || 
+                emp.role.toLowerCase().includes(query)
+            );
+
+            if (filtered.length === 0) {
+                listElement.innerHTML = '<li class="no-result">Uyğun əməkdaş tapılmadı.</li>';
+                return;
+            }
+
+            filtered.forEach(emp => {
+                const li = document.createElement('li');
+                li.className = 'result-item';
+                li.innerHTML = `
+                    <div class="user-info">
+                        <span class="user-name">${emp.name}</span>
+                        <span class="user-role">${emp.role}</span>
+                    </div>
+                    <span class="status-badge">${emp.status}</span>
+                `;
+                listElement.innerHTML += li.outerHTML;
+            });
+        }
+
+        // Səhifə ilk açılanda boş mesaj göstərsin
+        filterEmployees();
+    </script>
 </body>
 </html>
+
