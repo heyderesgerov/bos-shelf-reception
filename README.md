@@ -1,1 +1,1 @@
-BOS Shelf Reception
+BosShelf Reception
