@@ -1,0 +1,51 @@
+{
+  "employees": [
+    {
+      "first_name": "Elvin",
+      "last_name": "Məmmədov",
+      "department": "Satış Şöbəsi",
+      "floor": "2-ci mərtəbə",
+      "room": "B-204",
+      "directions": "Liftlə 2-ci mərtəbəyə qalxın, çıxışda sağa dönün, B-204 otağı dəhlizin sonunda solda yerləşir."
+    },
+    {
+      "first_name": "Aynur",
+      "last_name": "Hüseynova",
+      "department": "Mühasibatlıq",
+      "floor": "3-cü mərtəbə",
+      "room": "C-310",
+      "directions": "Liftlə 3-cü mərtəbəyə qalxın, çıxışda sola dönün, C-310 otağı ikinci qapıdır."
+    },
+    {
+      "first_name": "Tural",
+      "last_name": "Əliyev",
+      "department": "Marketinq",
+      "floor": "1-ci mərtəbə",
+      "room": "A-105",
+      "directions": "Resepsiyondan düz irəli gedin, A-105 otağı dəhlizin sağında, kafeteriyanın yanındadır."
+    }
+  ],
+  "meeting_rooms": [
+    {
+      "name": "Atlas",
+      "floor": "2-ci mərtəbə",
+      "room_number": "B-201",
+      "directions": "Liftlə 2-ci mərtəbəyə qalxın, sağa dönün, ilk otaq Atlas-dır.",
+      "capacity": 8
+    },
+    {
+      "name": "Nova",
+      "floor": "3-cü mərtəbə",
+      "room_number": "C-305",
+      "directions": "Liftlə 3-cü mərtəbəyə qalxın, düz irəli gedin, dəhlizin sonunda Nova otağı yerləşir.",
+      "capacity": 12
+    },
+    {
+      "name": "Orion",
+      "floor": "1-ci mərtəbə",
+      "room_number": "A-110",
+      "directions": "Resepsiyondan sağa dönün, Orion otağı şüşə qapının arxasındadır.",
+      "capacity": 6
+    }
+  ]
+}
